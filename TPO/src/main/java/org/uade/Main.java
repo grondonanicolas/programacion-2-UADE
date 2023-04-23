@@ -1,8 +1,6 @@
 package org.uade;
 
-import org.uade.ejercicio1.Ejercicio1;
-
-import static org.uade.ejercicio1.Ejercicio1.*;
+import static org.uade.exercise1.Exercise1.*;
 
 public class Main {
     public static void main(String[] args) {

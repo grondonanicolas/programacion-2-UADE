@@ -1,15 +1,15 @@
-package org.uade.ejercicio1;
+package org.uade.exercise1;
 
-import org.uade.adt.SpecialQueque;
+import org.uade.adt.SpecialQueue;
 import org.uade.adt.Stack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Ejercicio1 {
+public class Exercise1 {
 
-    public Ejercicio1() {
+    public Exercise1() {
     }
 
     /**
@@ -18,7 +18,7 @@ public class Ejercicio1 {
      * @param specialQueque
      * @return trace of special queque array
      */
-    public static int calculateTrace(SpecialQueque specialQueque) {
+    public static int calculateTrace(SpecialQueue specialQueque) {
         int traceValue = 0;
         for (int i = 0; i < specialQueque.getCount(); i++) {
             for (int j = 0; j < specialQueque.getCount(); j++) {
@@ -38,7 +38,7 @@ public class Ejercicio1 {
      * @return transposed of special queque array
      */
 
-    public static List<Stack> generateListOfStacksFromSpecialQueque(SpecialQueque specialQueque) {
+    public static List<Stack> generateListOfStacksFromSpecialQueque(SpecialQueue specialQueque) {
         List<Stack> stacks = new ArrayList<>();
         for (int i = 0; i < specialQueque.getCount(); i++) {
             Stack stack = new Stack();
@@ -47,7 +47,7 @@ public class Ejercicio1 {
         return stacks;
     }
 
-    public static SpecialQueque generateTransposed(SpecialQueque specialQueque) {
+    public static SpecialQueue generateTransposed(SpecialQueue specialQueque) {
         Stack[] specialQuequeStack = specialQueque.getArray();
 
         List<Stack> stacksTransposed = generateListOfStacksFromSpecialQueque(specialQueque);
@@ -84,7 +84,7 @@ public class Ejercicio1 {
      * @params specialQueque1, specialQueque2
      */
 
-    public static SpecialQueque sumOfQuequeArrays(SpecialQueque specialQueque1, SpecialQueque specialQueque2) {
+    public static SpecialQueue sumOfQuequeArrays(SpecialQueue specialQueque1, SpecialQueue specialQueque2) {
         List<Stack> sumOfSpecialQueques = generateListOfStacksFromSpecialQueque(specialQueque1);
         List<Stack> stacksFromSpecialQueque1 = Arrays.asList(specialQueque1.getArray());
         List<Stack> stacksFromSpecialQueque2 = Arrays.asList(specialQueque2.getArray());
@@ -104,7 +104,7 @@ public class Ejercicio1 {
             throw e;
         }
 
-        SpecialQueque specialQueque = new SpecialQueque();
+        SpecialQueue specialQueque = new SpecialQueue();
 
         for (int i = 0; i < sumOfSpecialQueques.size(); i++) {
             specialQueque.getArray()[i] = sumOfSpecialQueques.get(i);
@@ -114,11 +114,11 @@ public class Ejercicio1 {
         return specialQueque;
     }
 
-    public static SpecialQueque initiateQuequeMatrix() {
+    public static SpecialQueue initiateQuequeMatrix() {
         Stack stack1 = new Stack();
         Stack stack2 = new Stack();
         Stack stack3 = new Stack();
-        SpecialQueque matrix = new SpecialQueque();
+        SpecialQueue matrix = new SpecialQueue();
 
         stack1.add(1);
         stack1.add(1);
