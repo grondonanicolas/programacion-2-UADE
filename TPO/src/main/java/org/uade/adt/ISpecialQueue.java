@@ -1,6 +1,6 @@
 package org.uade.adt;
 
-public interface ISpecialQueque {
+public interface ISpecialQueue {
 
     //JavaDoc
     /**

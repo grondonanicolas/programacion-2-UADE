@@ -2,13 +2,13 @@ package org.uade.adt;
 
 import java.util.Arrays;
 
-public class SpecialQueque implements ISpecialQueque {
+public class SpecialQueue implements ISpecialQueue {
 
     private Stack[] array;
 
     private int count;
 
-    public SpecialQueque() {
+    public SpecialQueue() {
         this.array = new Stack[10000];
         this.count = 0;
     }
