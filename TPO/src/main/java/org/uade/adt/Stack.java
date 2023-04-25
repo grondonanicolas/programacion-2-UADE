@@ -49,6 +49,7 @@ public class Stack implements IStack {
         return this.array[count - 1];
     }
 
+
     @Override
     public String toString() {
         return "Stack{" +

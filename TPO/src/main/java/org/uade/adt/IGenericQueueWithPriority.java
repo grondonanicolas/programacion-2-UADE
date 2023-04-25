@@ -1,13 +1,13 @@
-package org.uade.exercise2;
+package org.uade.adt;
 
 import java.lang.reflect.Type;
 
-public interface IGenericQueueWithPriority {
+public interface IGenericQueueWithPriority<T,P extends Comparable> {
     /**
      * Postcondition: Stacks (adds in the final position) un valor.
      * @param a value to stack.
      */
-    void add(Type a,int priority);
+    void add(T a,P priority);
 
     /**
      * Precondition: The queue is not empty.
@@ -23,5 +23,5 @@ public interface IGenericQueueWithPriority {
     /**
      * @return retuns the first value.
      */
-    Type getFirst();
+    T getFirst();
 }

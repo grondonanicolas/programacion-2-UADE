@@ -1,8 +1,8 @@
-package org.uade.exercise2;
+package org.uade.adt;
 
 import java.lang.reflect.Type;
 
-public interface IGenericStack {
+public interface IGenericStack<T> {
 
     //JavaDoc
     /**
@@ -11,7 +11,7 @@ public interface IGenericStack {
      * @param a un numero arbitrario
      */
 
-    void add(Type a); // apilar
+    void add(T a); // apilar
 
     void remove(); //desapilar
 
@@ -23,5 +23,5 @@ public interface IGenericStack {
 
     boolean isEmpty(); // es vacia
 
-    Type getTop(); // obtener el tope
+    T getTop(); // obtener el tope
 }

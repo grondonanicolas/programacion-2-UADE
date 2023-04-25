@@ -1,20 +1,20 @@
-package org.uade.exercise2;
+package org.uade.adt;
 
 import java.lang.reflect.Type;
 
-public interface IGenericSet {
+public interface IGenericSet<T> {
 
     /**
      * Postcondition: Adds a value to the set.
      * @param a value to add.
      */
-    void add(Type a);
+    void add(T a);
 
     /**
      * Postcondicion: Erase the indicated element if exists, in other case doesn't do anything.
      * @param a value to erase.
      */
-    void remove(Type a);
+    void remove(T a);
 
     /**
      * @return <code>true</code> If set is empty, <code>false</code> in other case.
@@ -24,6 +24,6 @@ public interface IGenericSet {
     /**
      * @return returns the element from set.
      */
-    Type choose();
+    T choose();
 
 }
