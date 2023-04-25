@@ -1,14 +1,13 @@
-package org.uade.exercise2;
+package org.uade.adt;
 
-import java.lang.reflect.Type;
-
-public interface IGenericQueue {
+public interface IGenericQueue<T> {
 
     /**
      * Postcondicion: Acola (coloca en el final de la cola) un valor.
+     *
      * @param a valor a acolar.
      */
-    void add(Type a);
+    void add(T a);
 
     /**
      * Precondicion: La cola no esta vacia.
@@ -24,5 +23,5 @@ public interface IGenericQueue {
     /**
      * @return Devuelve el primero.
      */
-    Type getFirst();
+    T getFirst();
 }

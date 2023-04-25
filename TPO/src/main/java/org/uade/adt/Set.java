@@ -2,7 +2,7 @@ package org.uade.adt;
 
 import java.util.Random;
 
-public class Set implements ISet {
+public class Set<T> implements ISet {
 
     private final int[] array;
     private int count;

@@ -50,6 +50,7 @@ public class Exercise1 {
     public static SpecialQueue generateTransposed(SpecialQueue specialQueque) {
         Stack[] specialQuequeStack = specialQueque.getArray();
 
+        //Generate an empty matrix
         List<Stack> stacksTransposed = generateListOfStacksFromSpecialQueque(specialQueque);
         for (int i = 0; i < specialQueque.getCount(); i++) {
             int counter = 0;
