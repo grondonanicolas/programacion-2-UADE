@@ -19,3 +19,11 @@ jobs:
       - name: Run test (Coverage > 85% since Exercise 4)
         run: mvn -B test --file pom.xml
         working-directory: ./TPO
+      - name: Publish test coverage results
+        uses: PavanMudigonda/jacoco-reporter@v4.8
+        with:
+          coverage_results_path: 'target/site/jacoco/jacoco.xml'
+          coverage_report_title: 'Test coverage results'
+          coverage_report_name: 'Test coverage results'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          working-directory: ./TPO
