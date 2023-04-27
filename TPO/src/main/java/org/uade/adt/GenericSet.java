@@ -67,15 +67,34 @@ public class GenericSet<T> implements IGenericSet<T> {
             System.out.println("No se puede elegir un elemento del conjunto vacio");
         }
         int randomIndex = (new Random()).nextInt(this.count);
-        Node candidate = this.first;
+        Node<T> candidate = this.first;
         for(int i = 0; i <= randomIndex; i++) {
             candidate = candidate.getNext();
         }
-        return (T) candidate.getValue();
+        return candidate.getValue();
+    }
+
+    public Node<T> getFirst() {
+        return first;
+    }
+
+    public void setFirst(Node<T> first) {
+        this.first = first;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     @Override
     public String toString() {
-        return "GenericSet{}";
+        return "GenericSet{" +
+                "first=" + first +
+                ", count=" + count +
+                '}';
     }
 }
