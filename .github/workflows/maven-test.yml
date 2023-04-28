@@ -20,10 +20,18 @@ jobs:
         run: mvn -B test --file pom.xml
         working-directory: ./TPO
       - name: Publish test coverage results
-        uses: PavanMudigonda/jacoco-reporter@v4.8
+        uses: madrapps/jacoco-report@v1.3
         with:
           coverage_results_path: 'target/site/jacoco/jacoco.xml'
           coverage_report_title: 'Test coverage results'
           coverage_report_name: 'Test coverage results'
+          min-coverage-overall: 80
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          title: Code Coverage
           working-directory: ./TPO
+      - name: Fail PR if overall coverage is less than 80%
+        if: ${{ steps.jacoco.outputs.coverage-overall < 80.0 }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.setFailed('Overall coverage is less than 80%!')
