@@ -19,19 +19,39 @@ jobs:
       - name: Run test (Coverage > 85% since Exercise 4)
         run: mvn -B test --file pom.xml
         working-directory: ./TPO
-      - name: Publish test coverage results
-        uses: madrapps/jacoco-report@v1.3
+      - name: Generate Coverage Report
+        run: |
+          mvn -B package --file pom.xml
+
+      - name: Upload Report
+        uses: 'actions/upload-artifact@v2'
         with:
-          coverage_results_path: 'target/site/jacoco/jacoco.xml'
-          coverage_report_title: 'Test coverage results'
-          coverage_report_name: 'Test coverage results'
+          name: jacoco-report
+          path: ${{ github.workspace }}/target/site/jacoco/jacoco.xml
+
+      - name: Add coverage to PR
+        id: jacoco
+        uses: madrapps/jacoco-report@v1.2
+        with:
+          paths: ${{ github.workspace }}/target/site/jacoco/jacoco.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
           min-coverage-overall: 80
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-changed-files: 80
           title: Code Coverage
-          working-directory: ./TPO
-      - name: Fail PR if overall coverage is less than 80%
-        if: ${{ steps.jacoco.outputs.coverage-overall < 80.0 }}
-        uses: actions/github-script@v6
-        with:
-          script: |
-            core.setFailed('Overall coverage is less than 80%!')
+
+      - name: Save Coverage To Environment Variable
+        run: |
+          echo "TOTAL_COVERAGE=${{ steps.jacoco.outputs.coverage-overall }}" >> $GITHUB_ENV
+          echo "CHANGED_FILES_COVERAGE=${{ steps.jacoco.outputs.coverage-changed-files }}" >> $GITHUB_ENV
+
+      - name: Print & Check Coverage Info
+        run: |
+          import os
+          import sys
+          print("Total Coverage: " + str(os.environ["TOTAL_COVERAGE"]))
+          print("Changed Files Coverage: " + str(os.environ["CHANGED_FILES_COVERAGE"]))
+          if float(os.environ["TOTAL_COVERAGE"]) < 85 or float(os.environ["CHANGED_FILES_COVERAGE"]) < 85:
+            print("Insufficient Coverage!")
+            sys.exit(-1) # Cause Status Check Failure due to noncompliant coverage
+          sys.exit(0)
+        shell: python
