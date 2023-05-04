@@ -9,7 +9,7 @@ public class SpecialQueue implements ISpecialQueue {
     private int count;
 
     public SpecialQueue() {
-        this.array = new Stack[10000];
+        this.array = new Stack[10];
         this.count = 0;
     }
 
@@ -38,14 +38,6 @@ public class SpecialQueue implements ISpecialQueue {
     @Override
     public Stack getTop() {
         return this.array[0];
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public Stack[] getArray() {
-        return array;
     }
 
     @Override

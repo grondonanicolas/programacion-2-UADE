@@ -1,5 +1,6 @@
 package org.uade;
 
+import org.uade.exercise1.Exercise1;
 import org.uade.exercise2.Exercise2;
 
 import static org.uade.exercise1.Exercise1.*;
@@ -7,12 +8,13 @@ import static org.uade.exercise2.Exercise2.*;
 
 public class Main {
     public static void main(String[] args) {
+        Exercise1 exercise = new Exercise1();
         System.out.println("Exercise 1a");
         System.out.println("The queue of stacks is: " + initiateQuequeMatrix());
-        System.out.println("The trace is: " + calculateTrace(initiateQuequeMatrix()));
+        System.out.println("The trace is: " + exercise.calculateTrace(initiateQuequeMatrix()));
 
         System.out.println("Exercise 1b");
-        System.out.println("The transposed is: " + generateTransposed(initiateQuequeMatrix()));
+        System.out.println("The transposed is: " + exercise.generateTransposed(initiateQuequeMatrix()));
         System.out.println();
         System.out.println("Exercise 1c");
         System.out.println("The sum of queues of stacks is: ");
