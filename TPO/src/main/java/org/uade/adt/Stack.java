@@ -12,22 +12,6 @@ public class Stack implements IStack {
         this.count = 0;
     }
 
-    public int[] getArray() {
-        return array;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public void setArray(int[] array) {
-        this.array = array;
-    }
-
     @Override
     public void add(int a) {
         this.array[this.count] = a;

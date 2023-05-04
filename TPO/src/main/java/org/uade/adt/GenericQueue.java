@@ -2,19 +2,13 @@ package org.uade.adt;
 
 import org.uade.adt.node.Node;
 
-import java.lang.reflect.Type;
-import java.util.Arrays;
-
 public class GenericQueue<T> implements IGenericQueue<T> {
 
     private Node<T> first;
 
-    public GenericQueue() {
-    }
-
     @Override
     public void add(T a) {
-        Node node = new Node(a, null);
+        Node<T> node = new Node<>(a, null);
         if(this.first == null) {
             this.first = node;
             return;

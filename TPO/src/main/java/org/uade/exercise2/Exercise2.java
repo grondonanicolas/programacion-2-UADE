@@ -7,9 +7,6 @@ import org.uade.adt.Stack;
 
 public class Exercise2 {
 
-    public Exercise2() {
-    }
-
     /**
      * Ejercicio 2-1: Desarrolle una función que reciba un Stack genérico e invierta sus elementos.
      *
