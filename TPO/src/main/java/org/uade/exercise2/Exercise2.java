@@ -1,9 +1,6 @@
 package org.uade.exercise2;
 
-import org.uade.adt.GenericSet;
-import org.uade.adt.GenericStack;
-import org.uade.adt.Set;
-import org.uade.adt.Stack;
+import org.uade.adt.*;
 
 public class Exercise2 {
 
@@ -30,12 +27,29 @@ public class Exercise2 {
      */
 
     public static GenericStack<GenericSet> copySet(GenericSet set) {
-        GenericSet setCopied = set;
+        GenericSet setCopied = copy(set);
         GenericStack<GenericSet> stackOfSets = new GenericStack<>();
         stackOfSets.add(set);
         stackOfSets.add(setCopied);
 
         return stackOfSets;
+    }
+
+    public static GenericSet copy(GenericSet<Integer> set) {
+        GenericSet<Integer> copy = new GenericSet<>();
+        GenericSet<Integer> aux = new GenericSet<>();
+        while (!set.isEmpty()) {
+            int value = set.choose();
+            aux.add(value);
+            set.remove(value);
+        }
+        while (!aux.isEmpty()) {
+            int value = aux.choose();
+            set.add(value);
+            copy.add(value);
+            aux.remove(value);
+        }
+        return copy;
     }
 
 
@@ -48,7 +62,7 @@ public class Exercise2 {
         return genericStack;
     }
 
-    public static GenericSet generateSet(){
+    public static GenericSet generateSet() {
         GenericSet set = new GenericSet<Integer>();
         set.add(1);
         set.add(3);
