@@ -22,15 +22,11 @@ jobs:
       - name: Build with Maven
         working-directory: ./TPO
         run: mvn -B install --file pom.xml
-      - name: Publish test coverage results
-        uses: PavanMudigonda/jacoco-reporter@v4.8
+      - name: Add coverage to PR
+        id: jacoco
+        uses: madrapps/jacoco-report@v1.3
         with:
-          coverage_results_path: 'TPO/target/site/jacoco/jacoco.xml'
-          coverage_report_title: 'Test coverage results'
-          coverage_report_name: 'Test coverage results'
-          minimum_coverage: 80
-          fail_below_threshold: true
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-      # Publish Coverage Job Summary
-      - name: Add Coverage Job Summary
-        run: echo "${{ steps.jacoco_reporter.outputs.coverageSummary }}" >> $GITHUB_STEP_SUMMARY
+          paths: ${{ github.workspace }}/build/reports/jacoco/testCoverage/testCoverage.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-overall: 85
+          min-coverage-changed-files: 80
