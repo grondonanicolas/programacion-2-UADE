@@ -20,8 +20,8 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Build with Maven
+        working-directory: ./TPO
         run: mvn -B install --file pom.xml
-
       - name: Publish test coverage results
         uses: PavanMudigonda/jacoco-reporter@v4.8
         with:
