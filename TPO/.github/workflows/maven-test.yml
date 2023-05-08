@@ -31,7 +31,6 @@ jobs:
           minimum_coverage: 80
           fail_below_threshold: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
       # Publish Coverage Job Summary
       - name: Add Coverage Job Summary
         run: echo "${{ steps.jacoco_reporter.outputs.coverageSummary }}" >> $GITHUB_STEP_SUMMARY
