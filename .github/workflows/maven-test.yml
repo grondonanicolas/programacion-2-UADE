@@ -23,9 +23,9 @@ jobs:
         working-directory: ./TPO
         run: mvn -B install --file pom.xml
       - name: Publish test coverage results
-        working-directory: ./TPO
         uses: PavanMudigonda/jacoco-reporter@v4.8
         with:
+          working-directory: ./TPO
           coverage_results_path: 'target/site/jacoco/jacoco.xml'
           coverage_report_title: 'Test coverage results'
           coverage_report_name: 'Test coverage results'
