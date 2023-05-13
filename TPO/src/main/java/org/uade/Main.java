@@ -2,10 +2,11 @@ package org.uade;
 
 import org.uade.exercise1.Exercise1;
 import org.uade.exercise2.Exercise2;
+import org.uade.exercise3.Exercise3;
 
 import static org.uade.exercise1.Exercise1.*;
 import static org.uade.exercise2.Exercise2.*;
-
+import static org.uade.exercise3.Exercise3.*;
 public class Main {
     public static void main(String[] args) {
         Exercise1 exercise = new Exercise1();
@@ -28,5 +29,15 @@ public class Main {
         System.out.println("Exercise 2b");
         System.out.println("The generic set is: " + generateSet());
         System.out.println("The generic set and his copy is: " + copySet(generateSet()));
+
+        System.out.println();
+        Exercise3 exercise3 = new Exercise3();
+        System.out.println("Exercise 3a");
+        exercise3.demonstrateConcatenate();
+        System.out.println("Exercise 3b");
+        exercise3.demonstrateFlat();
+        System.out.println("Exercise 3c");
+        exercise3.demonstrateReverseWithDepth();
+
     }
 }
