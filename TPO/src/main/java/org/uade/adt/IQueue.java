@@ -1,6 +1,6 @@
 package org.uade.adt;
 
-public interface ISpecialQueque {
+public interface IQueue {
 
     //JavaDoc
     /**
@@ -9,7 +9,7 @@ public interface ISpecialQueque {
      * @param a un numero arbitrario
      */
 
-    void add(Stack a); // acolar
+    void add(int a); // acolar
 
     void remove(); //desacolar
 
@@ -21,5 +21,5 @@ public interface ISpecialQueque {
 
     boolean isEmpty();
 
-    Stack getTop();
+    int getTop();
 }

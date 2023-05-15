@@ -2,14 +2,14 @@ package org.uade.adt;
 
 import java.util.Arrays;
 
-public class SpecialQueque implements ISpecialQueque {
+public class SpecialQueue implements ISpecialQueue {
 
     private Stack[] array;
 
     private int count;
 
-    public SpecialQueque() {
-        this.array = new Stack[10000];
+    public SpecialQueue() {
+        this.array = new Stack[10];
         this.count = 0;
     }
 
@@ -38,14 +38,6 @@ public class SpecialQueque implements ISpecialQueque {
     @Override
     public Stack getTop() {
         return this.array[0];
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public Stack[] getArray() {
-        return array;
     }
 
     @Override
