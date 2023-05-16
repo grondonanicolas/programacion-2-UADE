@@ -13,7 +13,7 @@ public class Set<T> implements ISet {
     }
 
     @Override
-    public void add(int a) {
+    public ISet add(int a) {
         for(int i = 0; i < this.count; i++) {
             if(this.array[i] == a) {
                 return;
@@ -22,6 +22,14 @@ public class Set<T> implements ISet {
 
         this.array[this.count] = a;
         this.count++;
+        return this;
+    }
+    @Override
+    public ISet addAll(int[] values, ISet set) {
+        for(int i = 0; i < array.Length(values); i++) {
+            set.Add(values[i])
+        }
+        return set;
     }
 
     @Override
