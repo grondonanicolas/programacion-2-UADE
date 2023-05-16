@@ -6,6 +6,12 @@ public class GenericQueue<T> implements IGenericQueue<T> {
 
     private Node<T> first;
 
+    public GenericQueue(Node<T> first) {
+        for (int i = 0; i < nodes.length; i++) {
+            this.add(nodes[i]);
+        }
+    }
+
     @Override
     public void add(T a) {
         Node<T> node = new Node<>(a, null);
