@@ -1,5 +1,6 @@
 package org.uade.adt;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Set<T> implements ISet {
@@ -13,10 +14,10 @@ public class Set<T> implements ISet {
     }
 
     @Override
-    public ISet add(int a) {
+    public ISet Add(int a) {
         for(int i = 0; i < this.count; i++) {
             if(this.array[i] == a) {
-                return;
+                return null;
             }
         }
 
@@ -25,9 +26,9 @@ public class Set<T> implements ISet {
         return this;
     }
     @Override
-    public ISet addAll(int[] values, ISet set) {
-        for(int i = 0; i < array.Length(values); i++) {
-            set.Add(values[i])
+    public ISet AddAll(int[] values, ISet set) {
+        for(int i = 0; i < values.length; i++) {
+            set.Add(values[i]);
         }
         return set;
     }
@@ -63,6 +64,9 @@ public class Set<T> implements ISet {
 
     @Override
     public String toString() {
-        return "Set{}";
+        return "Set{" +
+                "array=" + Arrays.toString(array) +
+                ", count=" + count +
+                '}';
     }
 }
