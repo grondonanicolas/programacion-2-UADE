@@ -53,4 +53,6 @@ public interface IGraph {
      */
     int weight(int from, int to);
 
+    IGenericSet getNeighbors(int node);
+    GenericSet<IGraph> stronglyConnectedComponents();
 }

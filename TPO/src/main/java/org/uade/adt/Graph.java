@@ -1,9 +1,5 @@
 package org.uade.adt;
 
-import org.uade.adt.IDictionary;
-import org.uade.adt.IGraph;
-import org.uade.adt.ISet;
-
 public class Graph implements IGraph {
 
     private static final int MAX_NODES = 15;
@@ -12,10 +8,21 @@ public class Graph implements IGraph {
     private final IDictionary dictionary;
     private int totalNodes;
 
+    //news
+    private int time = 0;
+    private int[] lowlink;
+    private boolean[] onStack;
+    private IStack stack;
+
+    //end news
     public Graph() {
         this.adjacencyMatrix = new int[MAX_NODES][MAX_NODES];
         this.dictionary = new Dictionary(); // Asumo que el límite es mayor a MAX_NODES
         this.totalNodes = 0;
+        //news
+        this.lowlink = new int[MAX_NODES];
+        this.onStack = new boolean[MAX_NODES];
+        this.stack = new Stack();
     }
 
     @Override
@@ -146,4 +153,98 @@ public class Graph implements IGraph {
 
         return this.adjacencyMatrix[indexFrom][indexTo];
     }
+    @Override
+    public IGenericSet getNeighbors(int node) {
+        IGenericSet neighbors = new GenericSet();
+        ISet nodes = this.nodes();
+        while (!nodes.isEmpty()) {
+            int current = nodes.choose();
+            if (edgeExists(node, current)) {
+                neighbors.add(current);
+            }
+            nodes.remove(current);
+        }
+        return neighbors;
+    }
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        ISet nodes = this.nodes();
+
+        while (!nodes.isEmpty()) {
+            int current = nodes.choose();
+            sb.append("Nodo ").append(current).append(":");
+            IGenericSet<Integer> neighbors = getNeighbors(current);
+            if (!neighbors.isEmpty()) {
+                while (!neighbors.isEmpty()) {
+                    int neighbor = neighbors.choose();
+                    int weight = weight(current, neighbor);
+                    sb.append(" [").append(neighbor).append(", ").append(weight).append("]");
+                    neighbors.remove(neighbor);
+                }
+            } else {
+                sb.append(" Sin vecinos");
+            }
+            sb.append("\n");
+            nodes.remove(current);
+        }
+
+        return sb.toString();
+    }
+
+    @Override
+    public GenericSet<IGraph> stronglyConnectedComponents() {
+        time = 0;
+        GenericSet<IGraph> result = new GenericSet<>();
+        for (int i = 0; i < totalNodes; i++) {
+            if (lowlink[i] == 0) {
+                strongconnect(i, result);
+            }
+        }
+        return result;
+
+    }
+    private void strongconnect(int node, IGenericSet<IGraph> result) {
+        lowlink[node] = ++time;
+        int discovery = lowlink[node];
+        stack.add(node);
+        onStack[node] = true;
+
+        IGenericSet<Integer> neighbors = getNeighbors(node);
+        while (!neighbors.isEmpty()) {
+            int v = neighbors.choose();
+            if (lowlink[v] == 0) {
+                strongconnect(v, result);
+                lowlink[node] = Math.min(lowlink[node], lowlink[v]);
+            } else if (onStack[v]) {
+                lowlink[node] = Math.min(lowlink[node], lowlink[v]);
+            }
+            neighbors.remove(v);
+        }
+
+        if (lowlink[node] == discovery) {
+            IGraph scc = new Graph();
+            int w;
+            do {
+                w = stack.getTop();
+                stack.remove();
+                onStack[w] = false;
+                scc.addNode(w);
+                copyEdges(this, scc, w);
+            } while (w != node);
+            result.add(scc);
+        }
+    }
+
+    private void copyEdges(IGraph source, IGraph target, int node) {
+        IGenericSet<Integer> neighbors = source.getNeighbors(node);
+        while (!neighbors.isEmpty()) {
+            int neighbor = neighbors.choose();
+            target.addNode(neighbor);
+            target.addEdge(node, neighbor, source.weight(node, neighbor));
+            neighbors.remove(neighbor);
+        }
+    }
+
+
+
 }

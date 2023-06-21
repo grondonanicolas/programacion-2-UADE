@@ -3,6 +3,7 @@ package org.uade;
 import org.uade.exercise1.Exercise1;
 import org.uade.exercise2.Exercise2;
 import org.uade.exercise3.Exercise3;
+import org.uade.exercise8.Exercise8;
 
 import static org.uade.exercise1.Exercise1.*;
 import static org.uade.exercise2.Exercise2.*;
@@ -38,6 +39,12 @@ public class Main {
         exercise3.demonstrateFlat();
         System.out.println("Exercise 3c");
         exercise3.demonstrateReverseWithDepth();
+
+        System.out.println();
+
+        Exercise8 exercise8 = new Exercise8();
+        System.out.println("Exercise 8");
+        exercise8.testGraph();
 
     }
 }
