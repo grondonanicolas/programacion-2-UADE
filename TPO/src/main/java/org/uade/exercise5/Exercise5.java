@@ -2,7 +2,7 @@ package  org.uade.exercise5;
 
 import org.uade.adt.dynamic.*;
 
-public class exercise5 {
+public class Exercise5 {
 
     public static Stack eliminar_repetidos(Stack pila){
         ISet elementos_sin_repetir = new Set();
@@ -50,8 +50,7 @@ public class exercise5 {
         }
     }
 
-    public static void main(String[] args) {
-        // Ejercicio 5.1
+    public static void exercise5a(){
         Stack pila = new Stack();
         pila.add(4);
         pila.add(2);
@@ -60,16 +59,19 @@ public class exercise5 {
         pila.add(1);
         pila = ordenarPila(pila); // O(n*m) -> O(n)
         print(pila);
-        // Ejercicio 5.2
+    }
 
+    public static void exercise5b(){
         CoordSet b = new CoordSet();
         while (b.cardinality() < 1000) {
             double x = Math.random();
             double y = Math.random();
             b.add(x, y);
         }
-        System.out.println(b.cardinality());
-        Montecarlo mnt = new Montecarlo(0.73, 0.63, 0.43, 0);
+
+        double max_coord = 0.23;
+        double min_coord = 0;
+        Montecarlo mnt = new Montecarlo(max_coord, max_coord, min_coord, min_coord);
 
         while (!b.isEmpty()) {
             Coord element = b.choose();
@@ -80,22 +82,24 @@ public class exercise5 {
         CoordSet total = mnt.obtener_coordenadas();
         System.out.println(total.cardinality());
 
-        int long_coords = total.cardinality();
-        int puntos_dentro_del_circulo = 0;
+        double long_coords = total.cardinality();
+        double puntos_dentro_del_circulo = 0;
         while (!total.isEmpty()) {
             Coord coordenada = total.choose();
             total.remove(coordenada.get_x(), coordenada.get_y());
-            double a = coordenada.get_x() * coordenada.get_x();
-            double s = coordenada.get_y() * coordenada.get_y();
-            double distancia = Math.sqrt(a + s);
-            if (distancia <= 1) {
+            double x = coordenada.get_x() * coordenada.get_x();
+            double y = coordenada.get_y() * coordenada.get_y();
+            double distancia = Math.sqrt(x + y);
+            if (distancia <= max_coord) {
                 puntos_dentro_del_circulo++;
             }
 
         }
         System.out.println(puntos_dentro_del_circulo);
-        double a = puntos_dentro_del_circulo / long_coords;
-        System.out.println(a);
         System.out.println(4.0 * (puntos_dentro_del_circulo / long_coords));
+
+    }
+    public static void main(String[] args) {
+
     }
 }
