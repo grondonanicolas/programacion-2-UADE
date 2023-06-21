@@ -54,11 +54,11 @@ public class Main {
         System.out.println("Exercise 6b");
         exercise6.exercise6b();
         System.out.println("Exercise 6c");
-        exercise6.exercise6a();
+        exercise6.exercise6c();
         System.out.println("Exercise 6d");
-        exercise6.exercise6b();
+        exercise6.exercise6d();
         System.out.println("Exercise 6e");
-        exercise6.exercise6a();
+        exercise6.exercise6e();
 
     }
 }
