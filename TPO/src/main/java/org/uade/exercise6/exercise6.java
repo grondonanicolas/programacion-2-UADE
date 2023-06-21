@@ -36,7 +36,25 @@ public class exercise6 {
             System.out.println(element);
 
         }
+        // Ejercicio 6.3
+        DupQueue queue = new DupQueue();
 
+
+        queue.add(5);
+        queue.add(10);
+        queue.add(15);
+
+        int firstElement = queue.getFirst();
+        queue.remove();
+
+        boolean empty = queue.isEmpty();
+
+        System.out.print("Elementos de la cola: ");
+        while (!queue.isEmpty()) {
+            int element = queue.getFirst();
+            System.out.print(element + " ");
+            queue.remove();
+        }
 
 
         // Ejercicio 6.4
