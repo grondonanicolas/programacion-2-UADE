@@ -1,62 +1,65 @@
 package org.uade.adt.dynamic;
 
-import org.uade.adt.dynamic.ICoordSet;
+import org.uade.adt.definitions.ICoordSet;
 
 import java.util.Random;
 
 public class CoordSet implements ICoordSet {
 
-    private Coord first;
+    private CoordNode first;
     private int count;
 
     @Override
     public void add(double x, double y) {
+        Coord aux = new Coord(x, y);
+
         if (this.first == null) {
-            this.first = new Coord(x,y, null);
+            this.first = new CoordNode(x,y, null);
             this.count++;
             return;
         }
-
-        if (this.first.get_x() == x && this.first.get_y() == y) {
+        if (aux.equals(this.first.getCoord())) {
             return;
         }
 
-        Coord candidate = this.first;
+        CoordNode candidate = this.first;
         while (candidate.getNext() != null) {
             candidate = candidate.getNext();
-            if (candidate.get_x() == x && candidate.get_y() == y) {
+            if (aux.equals(candidate.getCoord())) {
                 return;
             }
         }
-        candidate.setNext(new Coord(x,y, null));
+        candidate.setNext(new CoordNode(x,y, null));
         this.count++;
     }
 
     @Override
     public void remove(double x, double y) {
-        if (this.first == null || (this.first.getNext() == null && this.first.get_x() != x && this.first.get_y() != y)) {
+        Coord aux = new Coord(x, y);
+
+        if (this.first == null || (this.first.getNext() == null && !(aux.equals(this.first.getCoord())))) {
             return;
         }
 
         if (this.first != null && this.first.getNext() == null) {
-            if (this.first.get_x() == x && this.first.get_y() == y) {
+            if (aux.equals(this.first.getCoord())) {
                 this.first = null;
                 this.count--;
             }
             return;
         }
 
-        if (this.first.get_x() == x && this.first.get_y() == y) {
+        if ((aux.equals(this.first.getCoord()))) {
             this.first = this.first.getNext();
             this.count--;
             return;
         }
 
-        Coord backup = this.first;
-        Coord candidate = this.first.getNext();
+        CoordNode backup = this.first;
+        CoordNode candidate = this.first.getNext();
 
         while (candidate != null) {
-            if (candidate.get_x() == x && candidate.get_y() == y) {
+            if ((aux.equals(candidate.getCoord()))) {
                 backup.setNext(candidate.getNext());
                 this.count--;
                 return;
@@ -65,6 +68,8 @@ public class CoordSet implements ICoordSet {
             candidate = candidate.getNext();
         }
     }
+
+
 
     @Override
     public boolean isEmpty() {
@@ -78,28 +83,14 @@ public class CoordSet implements ICoordSet {
             return null;
         }
         int randomIndex = (new Random()).nextInt(this.count);
-        Coord candidate = this.first;
+        CoordNode candidate = this.first;
         for (int i = 1; i <= randomIndex; i++) {
             candidate = candidate.getNext();
         }
-        return candidate;
+        return candidate.getCoord();
     }
 
     public int cardinality() {
-//        CoordSet aux = new CoordSet();
-//        int count = 0;
-//        while (!this.isEmpty()) {
-//            Coord element = this.choose();
-//            aux.add(element.get_x(), element.get_y());
-//            this.remove(element.get_x(), element.get_y());
-//            count++;
-//        }
-//        while (!aux.isEmpty()){
-//            Coord element = aux.choose();
-//            this.add(element.get_x(), element.get_y());
-//            aux.remove(element.get_x(), element.get_y());
-//        }
-//        return count;
         return this.count;
     }
 

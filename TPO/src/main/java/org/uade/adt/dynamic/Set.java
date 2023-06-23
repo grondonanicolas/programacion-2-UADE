@@ -1,5 +1,7 @@
 package org.uade.adt.dynamic;
 
+import org.uade.adt.definitions.ISet;
+
 import java.util.Random;
 
 public class Set implements ISet {

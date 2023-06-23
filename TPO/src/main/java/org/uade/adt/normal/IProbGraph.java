@@ -1,6 +1,6 @@
 package org.uade.adt.normal;
 
-import org.uade.adt.dynamic.ISet;
+import org.uade.adt.definitions.ISet;
 
 /**
  * Precondicion: para usar cualquier de estos metodos la estructura debe estar inicializada.
@@ -28,7 +28,6 @@ public interface IProbGraph {
      * Precondicion: No existe la arista pero existen los nodos.
      * @param from, nodo del cual sale la arista.
      * @param to, nodo al cual llega la arista.
-     * @param weight, peso de la arista.
      */
     void addEdge(int from, int to);
 
@@ -51,7 +50,7 @@ public interface IProbGraph {
      * Precondicion: Existe la arista
      * @param from, nodo del cual sale la arista.
      * @param to, nodo al cual llega la arista.
-     * @return peso de la arista.
+     * @return probabilidad de la arista.
      */
     double prob(int from, int to);
 

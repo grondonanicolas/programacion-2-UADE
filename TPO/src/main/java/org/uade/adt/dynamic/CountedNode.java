@@ -4,30 +4,22 @@ import java.util.Objects;
 
 public class CountedNode {
 
-    private int value;
-    private int qty;
+    private Counted value;
     private CountedNode next;
 
     public CountedNode(int value, int qty, CountedNode next) {
-        this.value = value;
-        this.qty = qty;
+        this.value = new Counted(value, qty);
         this.next = next;
     }
 
-    public int getValue() {
+    public Counted getNode() {
         return value;
     }
 
-    public int getQty() {
-        return qty;
-    }
-    public void setValue(int value) {
+    public void setValue(Counted value) {
         this.value = value;
     }
 
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
 
     public CountedNode getNext() {
         return next;
@@ -42,6 +34,6 @@ public class CountedNode {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CountedNode node = (CountedNode) o;
-        return getValue() == node.getValue() && Objects.equals(getNext(), node.getNext());
+        return getNode().getValue() == node.getNode().getValue() && Objects.equals(getNext(), node.getNext());
     }
 }

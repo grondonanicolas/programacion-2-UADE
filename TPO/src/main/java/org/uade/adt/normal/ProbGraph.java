@@ -1,6 +1,6 @@
 package org.uade.adt.normal;
 
-import org.uade.adt.dynamic.ISet;
+import org.uade.adt.definitions.ISet;
 
 public class ProbGraph implements IProbGraph {
 
@@ -94,6 +94,10 @@ public class ProbGraph implements IProbGraph {
             throw new RuntimeException("Ya existe la arista");
         }
         double prob = Math.random();
+        while (prob==0) {
+            prob = Math.random();
+        }
+
         this.adjacencyMatrix[indexFrom][indexTo] = prob;
     }
 

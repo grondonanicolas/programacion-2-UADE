@@ -1,6 +1,6 @@
 package org.uade.adt.dynamic;
 
-import org.uade.adt.dynamic.*;
+import org.uade.adt.definitions.IQueue;
 
 
 public class DupQueue implements IQueue {
@@ -11,6 +11,9 @@ public class DupQueue implements IQueue {
     @Override
     public void add(int a) {
         DequeNode newNode = new DequeNode(a, null, null);
+        newNode.setPrevious(newNode);
+        newNode.setNext(newNode);
+
         if (isEmpty()) {
             this.first = newNode;
             this.last = newNode;
@@ -31,8 +34,8 @@ public class DupQueue implements IQueue {
             this.first = null;
             this.last = null;
         } else {
+            this.first.setPrevious(this.first.getPrevious());
             this.first = this.first.getNext();
-            this.first.setPrevious(null);
         }
     }
 

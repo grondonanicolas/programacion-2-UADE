@@ -1,23 +1,23 @@
-package org.uade.adt.dynamic;
+package org.uade.adt.definitions;
 
 /**
  * Precondicion: para usar cualquier de estos metodos la estructura debe estar inicializada.
  */
-public interface ICoordSet {
+public interface ISet {
 
     /**
      * Postcondicion: Agrega un valor al conjunto.
      *
      * @param a valor a agregar.
      */
-    void add(double x, double y);
+    void add(int a);
 
     /**
      * Postcondicion: Quita el elemento indicado si existe, de lo contrario no hace nada.
      *
      * @param a valor a quitar.
      */
-    void remove(double x, double y);
+    void remove(int a);
 
     /**
      * @return <code>true</code> si es el conjunto vacio, <code>false</code> en otro caso.
@@ -27,6 +27,6 @@ public interface ICoordSet {
     /**
      * @return Devuelve el un elemento del conjunto.
      */
-    Coord choose();
+    int choose();
 
 }

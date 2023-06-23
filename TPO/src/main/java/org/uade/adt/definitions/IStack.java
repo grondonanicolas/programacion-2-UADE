@@ -1,12 +1,12 @@
-package org.uade.adt.dynamic;
+package org.uade.adt.definitions;
 
 /**
  * Precondicion: para usar cualquier de estos metodos la estructura debe estar inicializada.
  */
-public interface ILimitedStack {
+public interface IStack {
 
     /**
-     * Postcondicion: Apila (coloca en el tope) un valor si el valor no es mayor al limite dado
+     * Postcondicion: Apila (coloca en el tope) un valor.
      *
      * @param a valor a apilar.
      */

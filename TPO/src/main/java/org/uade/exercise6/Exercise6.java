@@ -1,18 +1,20 @@
 package org.uade.exercise6;
+import org.uade.adt.definitions.ISet;
 import org.uade.adt.dynamic.*;
 import org.uade.adt.normal.*;
 
 public class Exercise6 {
 
     public static void exercise6a(){
-        LimitedStack pila_limitada = new LimitedStack(5);
-        pila_limitada.add(1);
-        pila_limitada.add(2);
-        pila_limitada.add(3);
-        pila_limitada.add(4);
-        pila_limitada.add(5);
-        pila_limitada.add(6);
-        pila_limitada.add(7);
+        LimitedStack pilaLimitada = new LimitedStack(5);
+        pilaLimitada.add(1);
+        pilaLimitada.add(2);
+        pilaLimitada.add(3);
+        pilaLimitada.add(4);
+        pilaLimitada.add(5);
+
+        pilaLimitada.add(6);
+        pilaLimitada.add(7);
     }
 
     public static void exercise6b(){
@@ -33,7 +35,6 @@ public class Exercise6 {
             int element = test.choose();
             test.remove(element);
             System.out.println(element);
-
         }
     }
 
@@ -66,7 +67,7 @@ public class Exercise6 {
         newset.add(2);
         newset.add(3);
         while (!newset.isEmpty()){
-            CountedNode a2 = newset.choose();
+            Counted a2 = newset.choose();
             System.out.println("Valor:" + a2.getValue() + " Cantidad: " + a2.getQty());
             newset.remove(a2.getValue());
         }

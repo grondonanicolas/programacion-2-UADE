@@ -1,29 +1,24 @@
 package org.uade.adt.dynamic;
 
-import org.uade.adt.dynamic.ILimitedStack;
+import org.uade.adt.definitions.ILimitedStack;
 
 public class LimitedStack implements ILimitedStack {
 
     private Node first;
     private int limit;
+
+    private int count;
     public LimitedStack(int limit){
          this.limit = limit;
     }
     @Override
     public void add(int a) {
-        int count = 0;
         if (this.first == null){
-            count = 0;
+            this.count = 0;
         }
-        else {
-            Node candidate = this.first;
-            while (candidate != null) {
-                candidate = candidate.getNext();
-                count++;
-            }
-        }
-        if (count < this.limit){
+        if (this.count < this.limit){
             this.first = new Node(a, this.first);
+            this.count++;
         }
         else {
             System.out.println("La pila ha alcanzado su limite, para agregar un nuevo elemento elimine alguno");
@@ -36,6 +31,7 @@ public class LimitedStack implements ILimitedStack {
             System.out.println("No se puede desapilar una pila vacia");
             return;
         }
+        this.count--;
         this.first = this.first.getNext();
     }
 

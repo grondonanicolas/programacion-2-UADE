@@ -1,5 +1,8 @@
 package org.uade.adt.dynamic;
 
+import org.uade.adt.definitions.ICountedSet;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 public class CountedSet implements ICountedSet {
@@ -15,16 +18,16 @@ public class CountedSet implements ICountedSet {
             return;
         }
 
-        if (this.first.getValue() == a) {
-            this.first.setQty(this.first.getQty()+1);
+        if (this.first.getNode().getValue() == a) {
+            this.first.getNode().setQty(this.first.getNode().getQty()+1);
             return;
         }
 
         CountedNode candidate = this.first;
         while (candidate.getNext() != null) {
             candidate = candidate.getNext();
-            if (candidate.getValue() == a) {
-                this.first.setQty(this.first.getQty()+1);
+            if (candidate.getNode().getValue() == a) {
+                this.first.getNode().setQty(this.first.getNode().getQty()+1);
                 return;
             }
         }
@@ -38,16 +41,16 @@ public class CountedSet implements ICountedSet {
             return;
         }
 
-        if (this.first.getValue() == a) {
-            this.first.setQty(this.first.getQty()+quantity_to_add);
+        if (this.first.getNode().getValue() == a) {
+            this.first.getNode().setQty(this.first.getNode().getQty()+quantity_to_add);
             return;
         }
 
         CountedNode candidate = this.first;
         while (candidate.getNext() != null) {
             candidate = candidate.getNext();
-            if (candidate.getValue() == a) {
-                this.first.setQty(this.first.getQty()+quantity_to_add);
+            if (candidate.getNode().getValue() == a) {
+                this.first.getNode().setQty(this.first.getNode().getQty()+quantity_to_add);
                 return;
             }
         }
@@ -57,20 +60,20 @@ public class CountedSet implements ICountedSet {
 
     @Override
     public void remove(int a) {
-        if (this.first == null || (this.first.getNext() == null && this.first.getValue() != a)) {
+        if (this.first == null || (this.first.getNext() == null && this.first.getNode().getValue() != a)) {
             return;
         }
         if (this.first != null && this.first.getNext() == null) {
-            if (this.first.getValue() == a) {
-                if (this.first.getQty() > 0){
-                    this.first.setQty(this.first.getQty()-1);
+            if (this.first.getNode().getValue() == a) {
+                if (this.first.getNode().getQty() > 0){
+                    this.first.getNode().setQty(this.first.getNode().getQty()-1);
                 }
                 else {
                     this.first = null;
                     this.count--;
                 }
 
-                if (this.first.getQty() == 0){
+                if (this.first.getNode().getQty() == 0){
                     this.first = null;
                     this.count--;
                 }
@@ -78,16 +81,16 @@ public class CountedSet implements ICountedSet {
             return;
         }
 
-        if (this.first.getValue() == a) {
-            if (this.first.getQty() > 0){
-                this.first.setQty(this.first.getQty()-1);
+        if (this.first.getNode().getValue() == a) {
+            if (this.first.getNode().getQty() > 0){
+                this.first.getNode().setQty(this.first.getNode().getQty()-1);
             }
             else {
                 this.first = this.first.getNext();
                 this.count--;
             }
 
-            if (this.first.getQty() == 0){
+            if (this.first.getNode().getQty() == 0){
                 this.first = this.first.getNext();
                 this.count--;
             }
@@ -98,17 +101,17 @@ public class CountedSet implements ICountedSet {
         CountedNode candidate = this.first.getNext();
 
         while (candidate != null) {
-            if (candidate.getValue() == a) {
+            if (candidate.getNode().getValue() == a) {
                 backup.setNext(candidate.getNext());
-                if (candidate.getQty() > 0){
-                    candidate.setQty(candidate.getQty()-1);
+                if (candidate.getNode().getQty() > 0){
+                    candidate.getNode().setQty(candidate.getNode().getQty()-1);
                 }
                 else {
                     this.count--;
                     return;
 
                 }
-                if (candidate.getQty() == 0){
+                if (candidate.getNode().getQty() == 0){
                     this.count--;
                     return;
                 }
@@ -121,20 +124,20 @@ public class CountedSet implements ICountedSet {
 
 
     public void remove(int a, int quantity_to_remove) {
-        if (this.first == null || (this.first.getNext() == null && this.first.getValue() != a)) {
+        if (this.first == null || (this.first.getNext() == null && this.first.getNode().getValue() != a)) {
             return;
         }
         if (this.first != null && this.first.getNext() == null) {
-            if (this.first.getValue() == a) {
-                if (this.first.getQty() > 0 && this.first.getQty() >= quantity_to_remove){
-                    this.first.setQty(this.first.getQty()-quantity_to_remove);
+            if (this.first.getNode().getValue() == a) {
+                if (this.first.getNode().getQty() > 0 && this.first.getNode().getQty() >= quantity_to_remove){
+                    this.first.getNode().setQty(this.first.getNode().getQty()-quantity_to_remove);
                 }
                 else {
                     this.first = null;
                     this.count--;
                 }
 
-                if (this.first.getQty() == 0){
+                if (this.first.getNode().getQty() == 0){
                     this.first = null;
                     this.count--;
                 }
@@ -142,16 +145,16 @@ public class CountedSet implements ICountedSet {
             return;
         }
 
-        if (this.first.getValue() == a) {
-            if (this.first.getQty() > 0 && this.first.getQty() >= quantity_to_remove){
-                this.first.setQty(this.first.getQty()-quantity_to_remove);
+        if (this.first.getNode().getValue() == a) {
+            if (this.first.getNode().getQty() > 0 && this.first.getNode().getQty() >= quantity_to_remove){
+                this.first.getNode().setQty(this.first.getNode().getQty()-quantity_to_remove);
             }
             else {
                 this.first = this.first.getNext();
                 this.count--;
             }
 
-            if (this.first.getQty() == 0){
+            if (this.first.getNode().getQty() == 0){
                 this.first = this.first.getNext();
                 this.count--;
             }
@@ -162,17 +165,17 @@ public class CountedSet implements ICountedSet {
         CountedNode candidate = this.first.getNext();
 
         while (candidate != null) {
-            if (candidate.getValue() == a) {
+            if (candidate.getNode().getValue() == a) {
                 backup.setNext(candidate.getNext());
-                if (candidate.getQty() > 0 && candidate.getQty() >= quantity_to_remove){
-                    candidate.setQty(candidate.getQty()-1);
+                if (candidate.getNode().getQty() > 0 && candidate.getNode().getQty() >= quantity_to_remove){
+                    candidate.getNode().setQty(candidate.getNode().getQty()-1);
                 }
                 else {
                     this.count--;
                     return;
 
                 }
-                if (candidate.getQty() == 0){
+                if (candidate.getNode().getQty() == 0){
                     this.count--;
                     return;
                 }
@@ -187,18 +190,28 @@ public class CountedSet implements ICountedSet {
     public boolean isEmpty() {
         return this.count == 0;
     }
-
+    public int size(){
+       return this.count;
+    }
     @Override
-    public CountedNode choose() {
+    public Counted choose() {
         if (this.count == 0) {
             System.out.println("No se puede elegir un elemento del conjunto vacio");
             return null;
         }
-        int randomIndex = (new Random()).nextInt(this.count);
+        ArrayList<Counted> aux = new ArrayList<>();
         CountedNode candidate = this.first;
-        for (int i = 1; i <= randomIndex; i++) {
+        for (int i = 1; i <= this.count; i++) {
+            int valor = candidate.getNode().getValue();
+            int cantidad = candidate.getNode().getQty();
+            for (int j = 1; j <= cantidad; j++){
+                Counted aux_node = new Counted(valor, cantidad);
+                aux.add(aux_node);
+            }
             candidate = candidate.getNext();
         }
-        return candidate;
+        int randomIndex = (new Random()).nextInt(aux.size());
+        Counted returnNode = aux.get(randomIndex);
+        return returnNode;
     }
 }

@@ -1,6 +1,6 @@
 package org.uade.adt.normal;
 
-import org.uade.adt.dynamic.ISet;
+import org.uade.adt.definitions.ISet;
 import org.uade.adt.dynamic.Set;
 
 import java.util.Arrays;

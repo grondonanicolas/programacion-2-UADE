@@ -1,34 +1,36 @@
 package  org.uade.exercise5;
 
+import org.uade.adt.definitions.ISet;
+import org.uade.adt.definitions.IStack;
 import org.uade.adt.dynamic.*;
 
 public class Exercise5 {
 
-    public static Stack eliminar_repetidos(Stack pila){
-        ISet elementos_sin_repetir = new Set();
+    public static Stack eliminarRepetidos(Stack pila){
+        ISet elementosSinRepetir = new Set();
         while (!pila.isEmpty()) { // O(n)
-            elementos_sin_repetir.add(pila.getTop());
+            elementosSinRepetir.add(pila.getTop());
             pila.remove();
         }
-        while (!elementos_sin_repetir.isEmpty()) {  // O(n)
-            int element = elementos_sin_repetir.choose();
+        while (!elementosSinRepetir.isEmpty()) {  // O(n)
+            int element = elementosSinRepetir.choose();
             pila.add(element);
-            elementos_sin_repetir.remove(element);
+            elementosSinRepetir.remove(element);
         }
         return pila;
     }
     public static Stack ordenarPila(Stack pila) {
-        Stack pila_sin_repetidos = eliminar_repetidos(pila);
+        Stack pilaSinRepetidos = eliminarRepetidos(pila);
         // Crear una pila auxiliar
         Stack aux = new Stack();
 
-        while (!pila_sin_repetidos.isEmpty()) {  // O(n)
-            int elemento = pila_sin_repetidos.getTop();
-            pila_sin_repetidos.remove();
+        while (!pilaSinRepetidos.isEmpty()) {  // O(n)
+            int elemento = pilaSinRepetidos.getTop();
+            pilaSinRepetidos.remove();
 
             // Mover elementos mayores de la pila original a la pila auxiliar
             while (!aux.isEmpty() && aux.getTop() > elemento) {  // O(m)
-                pila_sin_repetidos.add(aux.getTop());
+                pilaSinRepetidos.add(aux.getTop());
                 aux.remove();
             }
 
@@ -38,10 +40,10 @@ public class Exercise5 {
 
         // Transferir elementos ordenados de la pila auxiliar a la pila original
         while (!aux.isEmpty()) {  // O(n)
-            pila_sin_repetidos.add(aux.getTop());
+            pilaSinRepetidos.add(aux.getTop());
             aux.remove();
         }
-        return pila_sin_repetidos;
+        return pilaSinRepetidos;
     }
     public static void print(IStack stack) {
         while (!stack.isEmpty()) {
@@ -69,35 +71,19 @@ public class Exercise5 {
             b.add(x, y);
         }
 
-        double max_coord = 0.23;
+        double max_coord = 1;
         double min_coord = 0;
+
         Montecarlo mnt = new Montecarlo(max_coord, max_coord, min_coord, min_coord);
 
         while (!b.isEmpty()) {
             Coord element = b.choose();
             mnt.add(element);
-            b.remove(element.get_x(), element.get_y());
+            b.remove(element.getX(), element.getY());
         }
 
-        CoordSet total = mnt.obtener_coordenadas();
-        System.out.println(total.cardinality());
-
-        double long_coords = total.cardinality();
-        double puntos_dentro_del_circulo = 0;
-        while (!total.isEmpty()) {
-            Coord coordenada = total.choose();
-            total.remove(coordenada.get_x(), coordenada.get_y());
-            double x = coordenada.get_x() * coordenada.get_x();
-            double y = coordenada.get_y() * coordenada.get_y();
-            double distancia = Math.sqrt(x + y);
-            if (distancia <= max_coord) {
-                puntos_dentro_del_circulo++;
-            }
-
-        }
-        System.out.println(puntos_dentro_del_circulo);
-        System.out.println(4.0 * (puntos_dentro_del_circulo / long_coords));
-
+        double aproximacionPi = mnt.obtenerPi();
+        System.out.println(aproximacionPi);
     }
     public static void main(String[] args) {
 

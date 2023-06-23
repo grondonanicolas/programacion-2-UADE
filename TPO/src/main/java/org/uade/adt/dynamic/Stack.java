@@ -1,7 +1,6 @@
 package org.uade.adt.dynamic;
 
-import org.uade.adt.dynamic.IStack;
-import org.uade.adt.dynamic.Node;
+import org.uade.adt.definitions.IStack;
 
 public class Stack implements IStack {
 
