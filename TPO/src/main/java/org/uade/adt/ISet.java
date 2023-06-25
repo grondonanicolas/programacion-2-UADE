@@ -9,7 +9,13 @@ public interface ISet {
      * Postcondicion: Agrega un valor al conjunto.
      * @param a valor a agregar.
      */
-    void add(int a);
+    ISet add(int a);
+
+    /**
+     * Postcondicion: Agrega multiples valores al conjunto.
+     * @param set El set al cual vamos a agregar los valores
+     */
+    ISet addAll(ISet set);
 
     /**
      * Postcondicion: Quita el elemento indicado si existe, de lo contrario no hace nada.

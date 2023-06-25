@@ -13,9 +13,10 @@ public class Stack implements IStack {
     }
 
     @Override
-    public void add(int a) {
+    public IStack add(int a) {
         this.array[this.count] = a;
         this.count++;
+        return this;
     }
 
     @Override
