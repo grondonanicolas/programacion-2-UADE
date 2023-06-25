@@ -1,9 +1,11 @@
 package org.uade;
 
 import org.uade.exercise1.Exercise1;
+import org.uade.exercise3.Exercise3;
+import org.uade.exercise5.Exercise5;
+import org.uade.exercise6.Exercise6;
 
 import org.uade.adt.*;
-
 
 import static org.uade.exercise1.Exercise1.*;
 import static org.uade.exercise2.Exercise2.*;
@@ -33,6 +35,34 @@ public class Main {
         System.out.println("The generic set and his copy is: " + copySet(generateSet()));
 
         System.out.println();
+        Exercise3 exercise3 = new Exercise3();
+        System.out.println("Exercise 3a");
+        exercise3.demonstrateConcatenate();
+        System.out.println("Exercise 3b");
+        exercise3.demonstrateFlat();
+        System.out.println("Exercise 3c");
+        exercise3.demonstrateReverseWithDepth();
+
+        System.out.println();
+        Exercise5 exercise5 = new Exercise5();
+        System.out.println("Exercise 5a");
+        exercise5.exercise5a();
+        System.out.println("Exercise 5b");
+        exercise5.exercise5b();
+
+        System.out.println();
+        Exercise6 exercise6 = new Exercise6();
+        System.out.println("Exercise 6a");
+        exercise6.exercise6a();
+        System.out.println("Exercise 6b");
+        exercise6.exercise6b();
+        System.out.println("Exercise 6c");
+        exercise6.exercise6c();
+        System.out.println("Exercise 6d");
+        exercise6.exercise6d();
+        System.out.println("Exercise 6e");
+        exercise6.exercise6e();
+
 
         System.out.println("Exercise 4a");
         System.out.println("The builder set adding 1,2,423: " + generateBuilderSet().add(1).add(2).add(423));
