@@ -10,7 +10,7 @@ public interface IStack {
      * @param a un numero arbitrario
      */
 
-    void add(int a); // apilar
+    IStack add(int a); // apilar
 
     void remove(); //desapilar
 

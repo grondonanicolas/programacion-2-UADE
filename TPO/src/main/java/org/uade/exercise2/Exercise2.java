@@ -10,8 +10,8 @@ public class Exercise2 {
      * @return
      */
 
-    public static GenericStack revertStack(GenericStack stack) {
-        GenericStack stackReverted = new GenericStack();
+    public static GenericStack<String> revertStack(GenericStack<String> stack) {
+        GenericStack<String> stackReverted = new GenericStack<>();
         while (stack.getFirst() != null) {
             stackReverted.add(stack.getTop());
             stack.remove();
@@ -35,7 +35,7 @@ public class Exercise2 {
         return stackOfSets;
     }
 
-    public static GenericSet copy(GenericSet<Integer> set) {
+    public static GenericSet<Integer> copy(GenericSet<Integer> set) {
         GenericSet<Integer> copy = new GenericSet<>();
         GenericSet<Integer> aux = new GenericSet<>();
         while (!set.isEmpty()) {
@@ -53,8 +53,8 @@ public class Exercise2 {
     }
 
 
-    public static GenericStack generateStack() {
-        GenericStack genericStack = new GenericStack();
+    public static GenericStack<String> generateStack() {
+        GenericStack<String> genericStack = new GenericStack<>();
         genericStack.add("Hello");
         genericStack.add("how");
         genericStack.add("you");
@@ -62,8 +62,8 @@ public class Exercise2 {
         return genericStack;
     }
 
-    public static GenericSet generateSet() {
-        GenericSet set = new GenericSet<Integer>();
+    public static GenericSet<Integer> generateSet() {
+        GenericSet<Integer> set = new GenericSet<>();
         set.add(1);
         set.add(3);
         set.add(2);

@@ -6,6 +6,18 @@ public class GenericQueue<T> implements IGenericQueue<T> {
 
     private Node<T> first;
 
+    public GenericQueue(T... values) throws Exception {
+        if (values == null){
+            throw new Exception("values should not be null");
+        }
+        if (values.length < 1) {
+            throw new Exception("invalid initialization argument");
+        }
+        for (int i = 0; i < values.length; i++) {
+            this.add(values[i]);
+        }
+    }
+
     @Override
     public void add(T a) {
         Node<T> node = new Node<>(a, null);
