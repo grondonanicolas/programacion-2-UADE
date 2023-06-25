@@ -14,10 +14,10 @@ public class Set<T> implements ISet {
     }
 
     @Override
-    public ISet Add(int a) {
+    public ISet add(int a) {
         for(int i = 0; i < this.count; i++) {
             if(this.array[i] == a) {
-                return null;
+                return this;
             }
         }
 
@@ -26,11 +26,22 @@ public class Set<T> implements ISet {
         return this;
     }
     @Override
-    public ISet AddAll(int[] values, ISet set) {
-        for(int i = 0; i < values.length; i++) {
-            set.Add(values[i]);
+    public ISet addAll(ISet set) {
+        int value = set.choose();
+        ISet auxSet = new Set();
+        while (value != -1) {
+            this.add(value);
+            auxSet.add(value);
+            set.remove(value);
+            value = set.choose();
         }
-        return set;
+        value = auxSet.choose();
+        while (value != -1) {
+            set.add(value);
+            auxSet.remove(value);
+            value = auxSet.choose();
+        }
+        return this;
     }
 
     @Override

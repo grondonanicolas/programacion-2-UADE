@@ -1,11 +1,7 @@
 package org.uade;
 
-import org.uade.adt.ISet;
-import org.uade.adt.node.Node;
 import org.uade.exercise1.Exercise1;
-import org.uade.exercise2.Exercise2;
 
-import java.util.ArrayList;
 import org.uade.adt.*;
 
 
@@ -39,11 +35,13 @@ public class Main {
         System.out.println();
 
         System.out.println("Exercise 4a");
-        System.out.println("The builder set adding 1,2,423: " + generateBuilderSet().Add(1).Add(2).Add(423));
+        System.out.println("The builder set adding 1,2,423: " + generateBuilderSet().add(1).add(2).add(423));
         System.out.println("Exercise 4b");
         System.out.println("The builder stack adding 5,4,3,2: " + generateBuilderStack().add(5).add(4).add(3).add(2));
         System.out.println("Exercise 4c");
-        System.out.println("The builder set adding 9,2,94 with addAll: " + generateSetWithAddAll());
+        ISet initialSet = generateInitialSetAddAll();
+        System.out.println("The builder set adding 9,2,94 from initial set with addAll: " + generateFinalSetAddAll(initialSet));
+        System.out.println("Initial set after adding all values to another set 9,2,94: " + initialSet);
         System.out.println("Exercise 4d");
         System.out.println("The GenericQueue constructor with optional args 14,9,11: " + new GenericQueue(14, 9, 11));
         System.out.println("The GenericQueue constructor with optional args 9,23: " + new GenericQueue(9, 23));
