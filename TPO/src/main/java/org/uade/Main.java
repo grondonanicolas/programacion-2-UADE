@@ -4,9 +4,8 @@ import org.uade.exercise1.Exercise1;
 import org.uade.exercise3.Exercise3;
 import org.uade.exercise5.Exercise5;
 import org.uade.exercise6.Exercise6;
-
 import org.uade.adt.*;
-
+import org.uade.exercise8.Exercise8;
 import static org.uade.exercise1.Exercise1.*;
 import static org.uade.exercise2.Exercise2.*;
 import static org.uade.exercise4.Exercise4.*;
@@ -75,5 +74,10 @@ public class Main {
         System.out.println("Exercise 4d");
         System.out.println("The GenericQueue constructor with optional args 14,9,11: " + new GenericQueue(14, 9, 11));
         System.out.println("The GenericQueue constructor with optional args 9,23: " + new GenericQueue(9, 23));
+        System.out.println();
+
+        Exercise8 exercise8 = new Exercise8();
+        System.out.println("Exercise 8");
+        exercise8.testGraph();
     }
 }
